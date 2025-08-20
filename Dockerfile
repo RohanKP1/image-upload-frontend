@@ -2,7 +2,8 @@
 FROM node:20-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
-RUN npm install --production
+# Install ALL dependencies for build (Vite, Tailwind, etc. are devDependencies)
+RUN npm install
 COPY . .
 RUN npm run build
 
